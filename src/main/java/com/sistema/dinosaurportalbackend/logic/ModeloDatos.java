@@ -12,9 +12,9 @@ public class ModeloDatos {
     @Autowired private FavoritoService favoritoService;
     @Autowired private UsuarioService usuarioService;
 
-    public AuthService getAuthService() { return authService; }
+    public AuthService getAuthService()             { return authService; }
     public ContribucionService getContribucionService() { return contribucionService; }
-    public DinosaurioService getDinosaurioService() { return dinosaurioService; }
-    public FavoritoService getFavoritoService() { return favoritoService; }
-    public UsuarioService getUsuarioService() { return usuarioService; }
+    public DinosaurioService getDinosaurioService()   { return dinosaurioService; }
+    public FavoritoService getFavoritoService()       { return favoritoService; }
+    public UsuarioService getUsuarioService()         { return usuarioService; }
 }

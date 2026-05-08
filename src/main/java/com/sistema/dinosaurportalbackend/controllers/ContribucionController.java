@@ -3,8 +3,8 @@ package com.sistema.dinosaurportalbackend.controllers;
 import com.sistema.dinosaurportalbackend.dto.ContribucionRequest;
 import com.sistema.dinosaurportalbackend.logic.ModeloDatos;
 import com.sistema.dinosaurportalbackend.logic.model.Contribucion;
-import com.sistema.dinosaurportalbackend.logic.model.SesionUsuarioBean;
 import com.sistema.dinosaurportalbackend.logic.model.Usuario;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/contribuciones")
 public class ContribucionController {
     @Autowired private ModeloDatos modeloDatos;
-    @Autowired private SesionUsuarioBean sesionUsuarioBean;
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody ContribucionRequest request) {
-        if (!sesionUsuarioBean.isLogueado())
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autenticado");
+    public ResponseEntity<?> crear(@RequestBody ContribucionRequest request, HttpServletRequest httpRequest) {
+        Integer userId = (Integer) httpRequest.getAttribute("userId");
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autenticado");
 
         Contribucion c = new Contribucion();
         c.setTitulo(request.getTitulo());
@@ -28,7 +27,7 @@ public class ContribucionController {
         c.setContenidoHtml(request.getContenidoHtml());
 
         Usuario usuario = new Usuario();
-        usuario.setId(sesionUsuarioBean.getId());
+        usuario.setId(userId);
         c.setUsuario(usuario);
 
         String error = modeloDatos.getContribucionService().crearContribucion(c);
@@ -37,9 +36,9 @@ public class ContribucionController {
     }
 
     @GetMapping("/mias")
-    public ResponseEntity<?> mias() {
-        if (!sesionUsuarioBean.isLogueado())
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autenticado");
-        return ResponseEntity.ok(modeloDatos.getContribucionService().findByUsuarioId(sesionUsuarioBean.getId()));
+    public ResponseEntity<?> mias(HttpServletRequest request) {
+        Integer userId = (Integer) request.getAttribute("userId");
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autenticado");
+        return ResponseEntity.ok(modeloDatos.getContribucionService().findByUsuarioId(userId));
     }
 }
