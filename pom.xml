@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from data -->
     </parent>
     <groupId>com.sistema</groupId>
-    <artifactId>dragon-ball-portal-backend</artifactId>
+    <artifactId>dinosaur-portal-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dragon-ball-portal-backend</name>
-    <description>dragon-ball-portal-backend</description>
+    <name>dinosaur-portal-backend</name>
+    <description>dinosaur-portal-backend</description>
     <url/>
     <licenses>
         <license/>
