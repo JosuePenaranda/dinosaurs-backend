@@ -24,6 +24,9 @@ public class Dinosaurio {
     @Column(nullable = false, length = 20)
     private String epoca;
 
+    @Column(length = 20)
+    private String categoria;
+
     @Column(length = 255)
     private String imagen;
 

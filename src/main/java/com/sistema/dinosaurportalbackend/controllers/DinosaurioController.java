@@ -14,8 +14,9 @@ public class DinosaurioController {
     public ResponseEntity<?> listar(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) String epoca) {
-        return ResponseEntity.ok(modeloDatos.getDinosaurioService().buscar(nombre, tipo, epoca));
+            @RequestParam(required = false) String epoca,
+            @RequestParam(required = false) String categoria) {
+        return ResponseEntity.ok(modeloDatos.getDinosaurioService().buscar(nombre, tipo, epoca, categoria));
     }
 
     @GetMapping("/{id}")

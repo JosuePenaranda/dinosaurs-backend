@@ -27,6 +27,25 @@ public class Contribucion {
     @Column(nullable = false, length = 20)
     private String epoca;
 
+    @Column(length = 20)
+    private String categoria;
+
+    @Column(length = 255)
+    private String habitat;
+
+    @Column(length = 255)
+    private String alimentacion;
+
+    @Column(length = 100)
+    private String tamanio;
+
+    @Column(length = 255)
+    private String imagen;
+
+    @Lob
+    @Column(name = "curiosidades", columnDefinition = "TEXT")
+    private String curiosidades;
+
     @Lob
     @Column(name = "contenido_html", nullable = false, columnDefinition = "TEXT")
     private String contenidoHtml;

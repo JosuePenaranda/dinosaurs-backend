@@ -54,6 +54,12 @@ public class ContribucionService {
         dinosaurio.setNombre(contribucion.getTitulo());
         dinosaurio.setTipo(contribucion.getTipo());
         dinosaurio.setEpoca(contribucion.getEpoca());
+        dinosaurio.setCategoria(contribucion.getCategoria());
+        dinosaurio.setHabitat(contribucion.getHabitat());
+        dinosaurio.setAlimentacion(contribucion.getAlimentacion());
+        dinosaurio.setTamanio(contribucion.getTamanio());
+        dinosaurio.setCuriosidades(contribucion.getCuriosidades());
+        dinosaurio.setImagen(contribucion.getImagen());
         dinosaurio.setDescripcion(contribucion.getContenidoHtml());
         dinosaurio.setPublicado(true);
         dinosaurio.setAutor(contribucion.getUsuario());

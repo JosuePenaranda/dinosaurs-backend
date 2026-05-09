@@ -23,25 +23,42 @@ public class DinosaurioService {
     }
 
 
-    public List<Dinosaurio> buscar(String nombre, String tipo, String epoca) {
-        boolean tieneNombre = nombre != null && !nombre.isBlank();
-        boolean tieneTipo   = tipo   != null && !tipo.isBlank();
-        boolean tieneEpoca  = epoca  != null && !epoca.isBlank();
+    public List<Dinosaurio> buscar(String nombre, String tipo, String epoca, String categoria) {
+        boolean tieneNombre    = nombre    != null && !nombre.isBlank();
+        boolean tieneTipo      = tipo      != null && !tipo.isBlank();
+        boolean tieneEpoca     = epoca     != null && !epoca.isBlank();
+        boolean tieneCategoria = categoria != null && !categoria.isBlank();
 
+        if (tieneNombre && tieneTipo && tieneEpoca && tieneCategoria)
+            return dinosaurioRepository.findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, tipo, epoca, categoria);
         if (tieneNombre && tieneTipo && tieneEpoca)
             return dinosaurioRepository.findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, tipo, epoca);
+        if (tieneNombre && tieneTipo && tieneCategoria)
+            return dinosaurioRepository.findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, tipo, categoria);
+        if (tieneNombre && tieneEpoca && tieneCategoria)
+            return dinosaurioRepository.findByNombreContainingIgnoreCaseAndEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, epoca, categoria);
+        if (tieneTipo && tieneEpoca && tieneCategoria)
+            return dinosaurioRepository.findByTipoIgnoreCaseAndEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(tipo, epoca, categoria);
         if (tieneNombre && tieneTipo)
             return dinosaurioRepository.findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, tipo);
         if (tieneNombre && tieneEpoca)
             return dinosaurioRepository.findByNombreContainingIgnoreCaseAndEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, epoca);
+        if (tieneNombre && tieneCategoria)
+            return dinosaurioRepository.findByNombreContainingIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre, categoria);
         if (tieneTipo && tieneEpoca)
             return dinosaurioRepository.findByTipoIgnoreCaseAndEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(tipo, epoca);
+        if (tieneTipo && tieneCategoria)
+            return dinosaurioRepository.findByTipoIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(tipo, categoria);
+        if (tieneEpoca && tieneCategoria)
+            return dinosaurioRepository.findByEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(epoca, categoria);
         if (tieneNombre)
             return dinosaurioRepository.findByNombreContainingIgnoreCaseAndPublicadoTrueOrderByNombreAsc(nombre);
         if (tieneTipo)
             return dinosaurioRepository.findByTipoIgnoreCaseAndPublicadoTrueOrderByNombreAsc(tipo);
         if (tieneEpoca)
             return dinosaurioRepository.findByEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(epoca);
+        if (tieneCategoria)
+            return dinosaurioRepository.findByCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(categoria);
 
         return dinosaurioRepository.findByPublicadoTrueOrderByNombreAsc();
     }
