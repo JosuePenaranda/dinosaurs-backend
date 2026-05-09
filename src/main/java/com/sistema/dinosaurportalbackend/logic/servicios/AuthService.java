@@ -30,6 +30,7 @@ public class AuthService {
             "token",    token,
             "id",       usuario.getId(),
             "username", usuario.getUsername(),
+            "correo",   usuario.getCorreo(),
             "rol",      usuario.getRol().name()
         );
     }

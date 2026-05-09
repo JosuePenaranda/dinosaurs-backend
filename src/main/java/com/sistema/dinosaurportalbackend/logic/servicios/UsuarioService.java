@@ -32,6 +32,8 @@ public class UsuarioService {
     public String registrar(Usuario usuario) {
         if (usuario == null) return "El usuario es nulo";
         if (usuario.getUsername() == null || usuario.getUsername().isBlank()) return "El username es requerido";
+        if (usuario.getCorreo() == null || usuario.getCorreo().isBlank()) return "El correo es requerido";
+        if (!usuario.getCorreo().matches("^[\\w.+\\-]+@[\\w\\-]+\\.[a-zA-Z]{2,}$")) return "El correo no es válido";
         if (usuario.getPassword() == null || usuario.getPassword().isBlank()) return "La contraseña es requerida";
         if (usuarioRepository.existsByUsername(usuario.getUsername())) return "El username ya existe";
 

@@ -34,6 +34,6 @@ public class FavoritoController {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autenticado");
         String error = modeloDatos.getFavoritoService().eliminar(userId, dinosaurioId);
         if (error != null) return ResponseEntity.badRequest().body(error);
-        return ResponseEntity.ok("Eliminado de favoritos");
+        return ResponseEntity.noContent().build();
     }
 }

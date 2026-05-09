@@ -35,8 +35,8 @@ public class FavoritoService {
     }
 
     public String eliminar(Integer usuarioId, Integer dinosaurioId) {
-        return favoritoRepository.findByUsuario_IdAndDinosaurio_Id(usuarioId, dinosaurioId)
-            .map(f -> { favoritoRepository.delete(f); return (String) null; })
-            .orElse("No está en favoritos");
+        favoritoRepository.findByUsuario_IdAndDinosaurio_Id(usuarioId, dinosaurioId)
+            .ifPresent(favoritoRepository::delete);
+        return null;
     }
 }

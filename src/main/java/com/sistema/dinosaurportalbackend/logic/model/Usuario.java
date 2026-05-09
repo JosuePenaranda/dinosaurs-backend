@@ -16,6 +16,9 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     private String username;
 
+    @Column(nullable = false, unique = true, length = 150)
+    private String correo;
+
     @Column(nullable = false, length = 255)
     private String password;
 
