@@ -61,7 +61,7 @@ public class ContribucionController {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No autenticado");
 
         String nombre = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        Path destino = Paths.get("../Dinosaur-frontend/public/images/dinosaurios/" + nombre);
+        Path destino = Paths.get("C:/Universidad/PROGRA IV/Dinosaur-frontend/public/images/dinosaurios/" + nombre);
 
         try {
             Files.createDirectories(destino.getParent());
