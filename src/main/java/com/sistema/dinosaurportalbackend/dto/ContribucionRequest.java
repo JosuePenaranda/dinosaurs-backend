@@ -15,5 +15,5 @@ public class ContribucionRequest {
     private String tamanio;
     private String curiosidades;
     private String imagen;
-    private String contenidoHtml;
+    private String contenido;
 }

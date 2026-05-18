@@ -31,8 +31,8 @@ public class Contribucion {
 
     // Descripción detallada del dinosaurio
     @Lob
-    @Column(name = "contenido_html", nullable = false, columnDefinition = "TEXT")
-    private String contenidoHtml;
+    @Column(name = "contenido", nullable = false, columnDefinition = "TEXT")
+    private String contenido;
 
     // Estado actual: PENDIENTE, APROBADA o RECHAZADA
     @Enumerated(EnumType.STRING)

@@ -36,7 +36,7 @@ public class ContribucionService {
         if (contribucion.getTitulo() == null || contribucion.getTitulo().isBlank()) return "El título es requerido";
         if (contribucion.getTipo() == null || contribucion.getTipo().isBlank()) return "El tipo es requerido";
         if (contribucion.getEpoca() == null || contribucion.getEpoca().isBlank()) return "La época es requerida";
-        if (contribucion.getContenidoHtml() == null || contribucion.getContenidoHtml().isBlank()) return "El contenido es requerido";
+        if (contribucion.getContenido() == null || contribucion.getContenido().isBlank()) return "El contenido es requerido";
         if (contribucion.getUsuario() == null || contribucion.getUsuario().getId() == null) return "El usuario es requerido";
 
         Usuario usuario = usuarioService.findById(contribucion.getUsuario().getId());
@@ -59,7 +59,7 @@ public class ContribucionService {
         dinosaurio.setNombre(contribucion.getTitulo());
         dinosaurio.setTipo(contribucion.getTipo());
         dinosaurio.setEpoca(contribucion.getEpoca());
-        dinosaurio.setDescripcion(contribucion.getContenidoHtml());
+        dinosaurio.setDescripcion(contribucion.getContenido());
         dinosaurio.setPublicado(true);
         dinosaurio.setAutor(contribucion.getUsuario());
         dinosaurioService.guardar(dinosaurio);

@@ -26,7 +26,7 @@ public class ContribucionController {
         c.setTitulo(request.getTitulo());
         c.setTipo(request.getTipo());
         c.setEpoca(request.getEpoca());
-        c.setContenidoHtml(request.getContenidoHtml());
+        c.setContenido(request.getContenido());
 
         Usuario usuario = new Usuario();
         usuario.setId(userId);
