@@ -5,11 +5,13 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// Registra el filtro JWT para que se ejecute en todas las rutas /api/*
 @Configuration
 public class FilterConfig {
 
     @Autowired private JwtFilter jwtFilter;
 
+    // Aplica el filtro JWT a todas las peticiones que lleguen a /api/*
     @Bean
     public FilterRegistrationBean<JwtFilter> jwtFilterRegistration() {
         FilterRegistrationBean<JwtFilter> registration = new FilterRegistrationBean<>();
