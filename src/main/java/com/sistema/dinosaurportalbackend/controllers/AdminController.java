@@ -8,11 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// Controlador para las acciones exclusivas del administrador
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {
     @Autowired private ModeloDatos modeloDatos;
 
+    // Devuelve todas las contribuciones pendientes de revisión
     @GetMapping("/pendientes")
     public ResponseEntity<?> pendientes(HttpServletRequest request) {
         if (!"ADMIN".equals(request.getAttribute("rol")))
@@ -20,6 +22,7 @@ public class AdminController {
         return ResponseEntity.ok(modeloDatos.getContribucionService().findPendientes());
     }
 
+    // Aprueba una contribución y la publica como dinosaurio en el sistema
     @PostMapping("/contribuciones/{id}/aprobar")
     public ResponseEntity<?> aprobar(@PathVariable Integer id, @RequestBody DecisionRequest decision, HttpServletRequest request) {
         if (!"ADMIN".equals(request.getAttribute("rol")))
@@ -29,6 +32,7 @@ public class AdminController {
         return ResponseEntity.ok("Contribución aprobada");
     }
 
+    // Rechaza una contribución y guarda el motivo del admin
     @PostMapping("/contribuciones/{id}/rechazar")
     public ResponseEntity<?> rechazar(@PathVariable Integer id, @RequestBody DecisionRequest decision, HttpServletRequest request) {
         if (!"ADMIN".equals(request.getAttribute("rol")))

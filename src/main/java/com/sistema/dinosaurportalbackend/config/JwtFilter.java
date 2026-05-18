@@ -12,6 +12,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+// Filtro que intercepta cada petición y extrae el usuario del token JWT
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -22,10 +23,12 @@ public class JwtFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        // Lee el header Authorization de la petición
         String header = request.getHeader("Authorization");
 
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.substring(7);
+            // Si el token es válido, pone el id, username y rol en el request
             if (jwtUtil.isValid(token)) {
                 Claims claims = jwtUtil.getClaims(token);
                 request.setAttribute("userId",   claims.get("id", Integer.class));

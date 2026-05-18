@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+// Crea datos iniciales al arrancar la aplicación
 @Component
 public class DataInitializer implements CommandLineRunner {
     @Autowired private UsuarioRepository usuarioRepository;
@@ -15,6 +16,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        // Si no existe el admin lo crea con password 1234
         if (!usuarioRepository.existsByUsername("admin")) {
             Usuario admin = new Usuario();
             admin.setUsername("admin");

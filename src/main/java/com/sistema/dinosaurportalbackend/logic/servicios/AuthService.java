@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+// Maneja la autenticación del usuario
 @Service
 public class AuthService {
     @Autowired private UsuarioService usuarioService;
     @Autowired private PasswordHash passwordHash;
     @Autowired private JwtUtil jwtUtil;
 
+    // Valida las credenciales y devuelve el token JWT si son correctas
     public Map<String, Object> login(AuthRequest request) {
         if (request.getUsername() == null || request.getPassword() == null)
             return Map.of("error", "Credenciales inválidas");
@@ -30,7 +32,6 @@ public class AuthService {
             "token",    token,
             "id",       usuario.getId(),
             "username", usuario.getUsername(),
-            "correo",   usuario.getCorreo(),
             "rol",      usuario.getRol().name()
         );
     }

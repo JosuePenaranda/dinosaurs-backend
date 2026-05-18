@@ -5,20 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+// Controlador para consultar dinosaurios
 @RestController
 @RequestMapping("/api/dinosaurios")
 public class DinosaurioController {
     @Autowired private ModeloDatos modeloDatos;
 
+    // Devuelve la lista de dinosaurios, con filtros opcionales por nombre, tipo y época
     @GetMapping
     public ResponseEntity<?> listar(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) String epoca,
-            @RequestParam(required = false) String categoria) {
-        return ResponseEntity.ok(modeloDatos.getDinosaurioService().buscar(nombre, tipo, epoca, categoria));
+            @RequestParam(required = false) String epoca) {
+        return ResponseEntity.ok(modeloDatos.getDinosaurioService().buscar(nombre, tipo, epoca));
     }
 
+    // Devuelve el detalle completo de un dinosaurio por su id
     @GetMapping("/{id}")
     public ResponseEntity<?> detalle(@PathVariable Integer id) {
         var dinosaurio = modeloDatos.getDinosaurioService().findById(id);

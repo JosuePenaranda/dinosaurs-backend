@@ -6,27 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
+// Maneja la lógica de las contribuciones de los usuarios
 @Service
 public class ContribucionService {
     @Autowired private ContribucionRepository contribucionRepository;
     @Autowired private UsuarioService usuarioService;
     @Autowired private DinosaurioService dinosaurioService;
 
+    // Devuelve todas las contribuciones pendientes de revisión
     public List<Contribucion> findPendientes() {
         return contribucionRepository.findByEstadoOrderByFechaCreacionAsc(EstadoContribucion.PENDIENTE);
     }
 
+    // Devuelve todas las contribuciones de un usuario
     public List<Contribucion> findByUsuarioId(Integer usuarioId) {
         return contribucionRepository.findByUsuario_IdOrderByFechaCreacionDesc(usuarioId);
     }
 
+    // Devuelve una contribución por su id
     public Contribucion findById(Integer id) {
         return contribucionRepository.findById(id).orElse(null);
     }
 
+    // Guarda una nueva contribución con estado PENDIENTE
     public String crearContribucion(Contribucion contribucion) {
         if (contribucion == null) return "La contribución es nula";
         if (contribucion.getTitulo() == null || contribucion.getTitulo().isBlank()) return "El título es requerido";
@@ -45,6 +49,7 @@ public class ContribucionService {
         return null;
     }
 
+    // Aprueba una contribución y crea el dinosaurio en el sistema
     public String aprobar(Integer id, String observacionAdmin) {
         Contribucion contribucion = findById(id);
         if (contribucion == null) return "La contribución no existe";
@@ -54,12 +59,6 @@ public class ContribucionService {
         dinosaurio.setNombre(contribucion.getTitulo());
         dinosaurio.setTipo(contribucion.getTipo());
         dinosaurio.setEpoca(contribucion.getEpoca());
-        dinosaurio.setCategoria(contribucion.getCategoria());
-        dinosaurio.setHabitat(contribucion.getHabitat());
-        dinosaurio.setAlimentacion(contribucion.getAlimentacion());
-        dinosaurio.setTamanio(contribucion.getTamanio());
-        dinosaurio.setCuriosidades(contribucion.getCuriosidades());
-        dinosaurio.setImagen(contribucion.getImagen());
         dinosaurio.setDescripcion(contribucion.getContenidoHtml());
         dinosaurio.setPublicado(true);
         dinosaurio.setAutor(contribucion.getUsuario());
@@ -71,6 +70,7 @@ public class ContribucionService {
         return null;
     }
 
+    // Rechaza una contribución y guarda el motivo del admin
     public String rechazar(Integer id, String observacionAdmin) {
         Contribucion contribucion = findById(id);
         if (contribucion == null) return "La contribución no existe";

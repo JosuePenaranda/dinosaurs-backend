@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+// Controlador para autenticación de usuarios
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
     @Autowired private ModeloDatos modeloDatos;
 
+    // Recibe username y password, devuelve el token JWT si las credenciales son correctas
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {
         Map<String, Object> result = modeloDatos.getAuthService().login(request);
@@ -23,6 +25,7 @@ public class AuthController {
         return ResponseEntity.ok(result);
     }
 
+    // Registra un nuevo usuario en el sistema
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Usuario usuario) {
         String error = modeloDatos.getUsuarioService().registrar(usuario);
