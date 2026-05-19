@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class DinosaurioController {
     @Autowired private ModeloDatos modeloDatos;
 
-    // Devuelve la lista de dinosaurios, con filtros opcionales por nombre, tipo y época
+    // Devuelve la lista de dinosaurios, con filtros opcionales por nombre, tipo, época y categoría
     @GetMapping
     public ResponseEntity<?> listar(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) String epoca) {
-        return ResponseEntity.ok(modeloDatos.getDinosaurioService().buscar(nombre, tipo, epoca));
+            @RequestParam(required = false) String epoca,
+            @RequestParam(required = false) String categoria) {
+        return ResponseEntity.ok(modeloDatos.getDinosaurioService().buscar(nombre, tipo, epoca, categoria));
     }
 
     // Devuelve el detalle completo de un dinosaurio por su id

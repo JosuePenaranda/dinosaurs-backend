@@ -29,6 +29,31 @@ public class Contribucion {
     @Column(nullable = false, length = 20)
     private String epoca;
 
+    // Categoría del dinosaurio: terrestre, acuatico o aereo
+    @Column(length = 50)
+    private String categoria;
+
+    // Lugar donde vivía el dinosaurio
+    @Column(length = 255)
+    private String habitat;
+
+    // Descripción de qué comía
+    @Column(length = 255)
+    private String alimentacion;
+
+    // Tamaño aproximado
+    @Column(length = 100)
+    private String tamanio;
+
+    // Datos curiosos sobre el dinosaurio
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String curiosidades;
+
+    // Ruta de la imagen
+    @Column(length = 255)
+    private String imagen;
+
     // Descripción detallada del dinosaurio
     @Lob
     @Column(name = "contenido", nullable = false, columnDefinition = "TEXT")

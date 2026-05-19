@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// Repositorio para acceder a los dinosaurios en la base de datos
 @Repository
 public interface DinosaurioRepository extends CrudRepository<Dinosaurio, Integer> {
     List<Dinosaurio> findByPublicadoTrueOrderByNombreAsc();
@@ -16,10 +17,10 @@ public interface DinosaurioRepository extends CrudRepository<Dinosaurio, Integer
     List<Dinosaurio> findByTipoIgnoreCaseAndEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String tipo, String epoca);
     List<Dinosaurio> findByTipoIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String tipo, String categoria);
     List<Dinosaurio> findByEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String epoca, String categoria);
-    List<Dinosaurio> findByTipoIgnoreCaseAndEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String tipo, String epoca, String categoria);
     List<Dinosaurio> findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String nombre, String tipo);
     List<Dinosaurio> findByNombreContainingIgnoreCaseAndEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String nombre, String epoca);
     List<Dinosaurio> findByNombreContainingIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String nombre, String categoria);
+    List<Dinosaurio> findByTipoIgnoreCaseAndEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String tipo, String epoca, String categoria);
     List<Dinosaurio> findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndEpocaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String nombre, String tipo, String epoca);
     List<Dinosaurio> findByNombreContainingIgnoreCaseAndTipoIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String nombre, String tipo, String categoria);
     List<Dinosaurio> findByNombreContainingIgnoreCaseAndEpocaIgnoreCaseAndCategoriaIgnoreCaseAndPublicadoTrueOrderByNombreAsc(String nombre, String epoca, String categoria);

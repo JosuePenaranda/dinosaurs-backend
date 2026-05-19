@@ -19,6 +19,10 @@ public class Usuario {
     @Column(nullable = false, unique = true, length = 100)
     private String username;
 
+    // Correo electrónico del usuario
+    @Column(length = 100)
+    private String correo;
+
     // Contraseña encriptada con BCrypt
     @Column(nullable = false, length = 255)
     private String password;

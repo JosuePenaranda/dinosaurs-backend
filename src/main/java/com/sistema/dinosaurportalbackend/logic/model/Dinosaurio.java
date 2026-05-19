@@ -31,6 +31,10 @@ public class Dinosaurio {
     @Column(length = 255)
     private String imagen;
 
+    // Categoría del dinosaurio: terrestre, acuatico o aereo
+    @Column(length = 50)
+    private String categoria;
+
     // Lugar donde vivía el dinosaurio
     @Column(length = 255)
     private String habitat;
